@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { MovieEntity } from '../movie/movie.entity';
+import { CinemaEntity } from '../cinema/cinema.entity';
 
 @Entity('Actors')
 export class ActorEntity {
@@ -16,4 +18,9 @@ export class ActorEntity {
   })
   age: number;
 
+  @ManyToMany((type) => MovieEntity, (movie) => movie.actors)
+  movies: MovieEntity[];
+
+  @ManyToMany((type) => CinemaEntity, (cinema) => cinema.actors)
+  cinemas: CinemaEntity[];
 }

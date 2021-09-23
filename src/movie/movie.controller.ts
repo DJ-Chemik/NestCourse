@@ -5,6 +5,11 @@ import { MovieService } from './movie.service';
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
+  @Get('/')
+  getAll() {
+    return this.movieService.getAll();
+  }
+
   @Get('/all')
   getAllActors() {
     return this.movieService.getAllMovies();

@@ -4,6 +4,10 @@ import { CinemaService } from './cinema.service';
 @Controller('cinemas')
 export class CinemaController {
   constructor(private readonly cinemaService: CinemaService) {}
+  @Get('/')
+  getAll() {
+    return this.cinemaService.getAll();
+  }
 
   @Get('/all')
   getAllActors() {

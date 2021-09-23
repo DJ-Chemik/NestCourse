@@ -1,13 +1,30 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { Cinema } from '../interfaces/cinema';
+import { InjectRepository } from '@nestjs/typeorm';
+import { In, Repository } from 'typeorm';
+import { CinemaEntity } from './cinema.entity';
 import { ActorService } from 'src/actor/actor.service';
 
 @Injectable()
 export class CinemaService {
   constructor(
+    @InjectRepository(CinemaEntity)
+    private readonly cinemaRepository: Repository<CinemaEntity>,
     @Inject(forwardRef(() => ActorService))
     private readonly actorService: ActorService,
   ) {}
+
+  async getAll() {
+    return await this.cinemaRepository.find();
+  }
+
+  async getByNames(names: string[]) {
+    return await this.cinemaRepository.find({
+      where: {
+        name: In(names),
+      },
+    });
+  }
 
   private cinemas: Cinema[] = [
     {
