@@ -9,4 +9,9 @@ export class MovieController {
   getAllActors() {
     return this.movieService.getAllMovies();
   }
+
+  @Get('/zadanie1')
+  get() {
+    return this.movieService.getMoviesAndCities();
+  }
 }

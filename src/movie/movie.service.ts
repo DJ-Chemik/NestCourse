@@ -1,9 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { Movie } from 'src/interfaces/movie';
+import { CinemaService } from '../cinema/cinema.service';
+import { GenreService } from '../genre/genre.service';
 
 @Injectable()
 export class MovieService {
-  constructor() {}
+  constructor(
+
+    @Inject(forwardRef(() => CinemaService))
+    private readonly cinemaService: CinemaService,
+    @Inject(forwardRef(() => GenreService))
+    private readonly genreService: GenreService,
+  ) {}
 
   private movies: Movie[] = [
     {
@@ -28,5 +36,18 @@ export class MovieService {
 
   getAllMovies() {
     return this.movies;
+  }
+
+  getMoviesAndCities() {
+    const allCinemas = this.cinemaService.getAllCinemas();
+    const allGenres = this.genreService.getAllGenres();
+
+    return this.movies.map((movie) => ({
+      title: movie.title,
+      genre: allGenres.find((genre) => genre.name === movie.genre),
+      cities: allCinemas
+        .filter((cinema) => movie.playedIn.includes(cinema.name))
+        ?.map((cinema) => cinema.city),
+    }));
   }
 }

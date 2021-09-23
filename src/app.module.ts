@@ -7,6 +7,7 @@ import { ActorModule } from './actor/actor.module';
 import { MovieModule } from './movie/movie.module';
 import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CinemaModule } from './cinema/cinema.module';
 import { GenreModule } from './genre/genre.module';
 
 @Module({
@@ -33,6 +34,7 @@ import { GenreModule } from './genre/genre.module';
     SampleModule,
     ActorModule,
     MovieModule,
+    CinemaModule,
     GenreModule,
   ],
   controllers: [AppController],
