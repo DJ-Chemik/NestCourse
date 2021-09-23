@@ -7,11 +7,19 @@ type HeroParameters {
   points: Int
 }
 
-type Director {
+type Movie {
+  title: String!
+  year: Int!
+  genre: String!
+  playedIn: [String!]!
+}
+
+type DirectorExtended {
   name: String!
   surname: String!
   isAlive: Boolean!
   birthDate: DateTime!
+  movies: [Movie!]!
 }
 
 """
@@ -25,8 +33,8 @@ type Query {
   sayGoodbye: String!
   getHeroParameters(hero: String): HeroParameters!
   numberOfDirectors: Int!
-  directors: [Director!]!
+  directors: [DirectorExtended!]!
 
   """Moje rozbudowane query"""
-  directorsByNameOrEmptyTable(name: String): [Director!]!
+  directorsByNameOrEmptyTable(name: String): [DirectorExtended!]!
 }
