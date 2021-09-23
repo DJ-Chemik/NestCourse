@@ -38,3 +38,14 @@ type Query {
   """Moje rozbudowane query"""
   directorsByNameOrEmptyTable(name: String): [DirectorExtended!]!
 }
+
+type Mutation {
+  addDirector(input: DirectorInput!): DirectorExtended!
+}
+
+input DirectorInput {
+  name: String!
+  surname: String!
+  isAlive: Boolean!
+  birthDate: DateTime!
+}

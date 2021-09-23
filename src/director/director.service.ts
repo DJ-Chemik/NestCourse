@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { DirectorInput } from './director.input';
+import { Director } from './director.model';
 
 export const defaultDirectors = [
     {
@@ -42,7 +44,7 @@ export const defaultDirectors = [
 @Injectable()
 export class DirectorService {
 
-    private directors;
+    private directors: Director[];
 
     constructor () {
         this.directors = defaultDirectors;
@@ -58,5 +60,10 @@ export class DirectorService {
 
     getDirectorsByName(name: string) {
         return this.directors.filter(director => director.name === name);
+    }
+
+    addDirector(director: DirectorInput) {
+        this.directors.push(director);
+        return director;
     }
 }

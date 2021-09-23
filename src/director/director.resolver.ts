@@ -1,5 +1,6 @@
-import { Args, Int, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
+import { Args, Int, Mutation, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
 import { MovieService } from "src/movie/movie.service";
+import { DirectorInput } from "./director.input";
 import { Director } from "./director.model";
 import { defaultDirectors, DirectorService } from "./director.service";
 import { DirectorExtended } from "./directorExtended.model";
@@ -32,6 +33,11 @@ export class DirectorResolver {
     @ResolveField()
     async movies(@Parent() directorsByNameOrEmptyTable: DirectorExtended) {
         return await this.movieService.getAll();
+    }
+
+    @Mutation(() => DirectorExtended)
+    addDirector(@Args('input', { type: () => DirectorInput}) input: DirectorInput) {
+        return this.directorService.addDirector(input);
     }
 
 }
