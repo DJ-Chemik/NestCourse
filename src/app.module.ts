@@ -9,6 +9,7 @@ import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CinemaModule } from './cinema/cinema.module';
 import { GenreModule } from './genre/genre.module';
+import { DirectorModule } from './director/director.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { GenreModule } from './genre/genre.module';
     MovieModule,
     CinemaModule,
     GenreModule,
+    DirectorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
