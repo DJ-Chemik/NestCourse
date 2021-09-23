@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-const directors = [
+export const directors = [
     {
         name: "Quentin",
         surname: "Tarantino",
@@ -42,4 +42,15 @@ const directors = [
 @Injectable()
 export class DirectorService {
 
+    getNumberOfDirectors() {
+        return directors.length;
+    }
+
+    getDirectors() {
+        return directors;
+    }
+
+    getDirectorsByName(name: string) {
+        return directors.filter(director => director.name === name);
+    }
 }

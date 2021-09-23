@@ -7,9 +7,26 @@ type HeroParameters {
   points: Int
 }
 
+type Director {
+  name: String!
+  surname: String!
+  isAlive: Boolean!
+  birthDate: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   sayHello: String!
   sayHelloExtended(hero: String): String!
   sayGoodbye: String!
   getHeroParameters(hero: String): HeroParameters!
+  numberOfDirectors: Int!
+  directors: [Director!]!
+
+  """Moje rozbudowane query"""
+  directorsByNameOrEmptyTable(name: String): [Director!]!
 }
