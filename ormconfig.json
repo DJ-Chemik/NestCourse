@@ -1,0 +1,39 @@
+[
+  {
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5477,
+    "username": "docker",
+    "password": "docker",
+    "database": "nest",
+    "synchronize": false,
+    "entities": [
+      "dist/**/*.entity{.ts,.js}"
+    ],
+    "migrations": [
+      "dist/database/migrations/**/*{.ts,.js}"
+    ],
+    "cli": {
+      "migrationsDir": "database/migrations"
+    }
+  },
+  {
+    "name": "seed",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5477,
+    "username": "docker",
+    "password": "docker",
+    "database": "nest",
+    "synchronize": false,
+    "entities": [
+      "dist/**/*.entity{.ts,.js}"
+    ],
+    "migrations": [
+      "dist/database/seeds/**/*{.ts,.js}"
+    ],
+    "cli": {
+      "migrationsDir": "database/seeds"
+    }
+  }
+]
